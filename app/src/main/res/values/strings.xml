@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Weather Mars</string>
+    <string name="sol">Sol</string>
+    <string name="season">Season</string>
 </resources>

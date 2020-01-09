@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     String API_ENDPOINT = "https://api.nasa.gov/insight_weather/?api_key=DEMO_KEY&feedtype=json&ver=1.0";
 
+    TextView avgtemperatureTxt;
     TextView mintemperatureTxt;
     TextView maxtemperatureTxt;
     TextView solTxt;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        avgtemperatureTxt = findViewById(R.id.average);
         mintemperatureTxt = findViewById(R.id.minimum);
         maxtemperatureTxt = findViewById(R.id.maximum);
         solTxt = findViewById(R.id.sol);
@@ -62,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
                 String season = jsonObj.getJSONObject(sol_key)
                         .getString("Season");
 
+                Double avgTemp = jsonObj.getJSONObject(sol_key)
+                        .getJSONObject("AT")
+                        .getDouble("av");
+
                 Double minTemp = jsonObj.getJSONObject(sol_key)
                         .getJSONObject("AT")
                         .getDouble("mn");
@@ -70,13 +76,14 @@ public class MainActivity extends AppCompatActivity {
                         .getJSONObject("AT")
                         .getDouble("mx");
 
-                solTxt.setText("SOL " + sol_key);
-                seasonTxt.setText("Season " + season);
-                mintemperatureTxt.setText("Min " + String.valueOf(Math.round(minTemp))+ " °C");
-                maxtemperatureTxt.setText("Max " + String.valueOf(Math.round(maxTemp))+ " °C");
+                avgtemperatureTxt.setText(String.valueOf(avgTemp)+ " °C");
+                solTxt.setText(sol_key);
+                seasonTxt.setText(season);
+                mintemperatureTxt.setText("Min: " + String.valueOf(Math.round(minTemp))+ " °C");
+                maxtemperatureTxt.setText("Max: " + String.valueOf(Math.round(maxTemp))+ " °C");
 
             } catch (JSONException e) {
-                Toast.makeText(MainActivity.this, "Could not get a response/ Error: " + e, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Could not get a response from NASA: " + e, Toast.LENGTH_LONG).show();
             }
         }
     }
