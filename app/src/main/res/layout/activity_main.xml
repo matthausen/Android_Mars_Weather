@@ -5,84 +5,101 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <View
+    <ImageView
         android:id="@+id/view"
+        android:contentDescription="@string/content_description"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bgred"
+        android:background="@drawable/mars_surface"
         tools:layout_editor_absoluteX="-54dp"
         tools:layout_editor_absoluteY="-16dp" />
 
     <ImageView
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:background="@drawable/ic_sun"
-        android:contentDescription="@string/content_description"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#88808080"
+        android:contentDescription="@string/overlay"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/station"
+        android:textColor="@color/white"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/average"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintVertical_bias="0.615" />
 
     <TextView
         android:id="@+id/average"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="184dp"
         android:textColor="@color/white"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/maximum"
+        android:textSize="90sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view"
-        app:layout_constraintVertical_bias="0.812" />
+        app:layout_constraintVertical_bias="0.652" />
 
-    <TextView
-        android:id="@+id/maximum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
-
-    <TextView
-        android:id="@+id/minimum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/maximum"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/ic_temp"
+        android:contentDescription="temperature"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.325"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/average"
-        app:layout_constraintVertical_bias="0.663" />
+        app:layout_constraintVertical_bias="0.118" />
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/minMaxTemp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="32dp"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.369"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/average" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/ic_wind"
+        android:contentDescription="wind"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.325"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/maximum">
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.195" />
 
-        <com.darwindeveloper.horizontalscrollmenulibrary.custom_views.HorizontalScrollMenuView
-            android:id="@+id/forecast"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:icon_height="50dp"
-            app:icon_width="50dp"
-            app:item_backgroundColor="@android:color/transparent"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="361dp">
-
-        </com.darwindeveloper.horizontalscrollmenulibrary.custom_views.HorizontalScrollMenuView>
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/wind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.369"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/minMaxTemp"
+        app:layout_constraintVertical_bias="0.096" />
 
     <TextView
         android:id="@+id/sol"
@@ -92,27 +109,49 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/season"
-        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintHorizontal_bias="0.328"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.906" />
+        app:layout_constraintVertical_bias="0.728" />
 
     <TextView
         android:id="@+id/season"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.824"
+        app:layout_constraintHorizontal_bias="0.763"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.906" />
+        app:layout_constraintVertical_bias="0.728" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sol">
+
+        <com.darwindeveloper.horizontalscrollmenulibrary.custom_views.HorizontalScrollMenuView
+            android:id="@+id/forecast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:icon_height="50dp"
+            app:icon_width="50dp"
+            app:item_backgroundColor="@android:color/transparent"
+            tools:layout_editor_absoluteX="-4dp"
+            tools:layout_editor_absoluteY="591dp">
+
+        </com.darwindeveloper.horizontalscrollmenulibrary.custom_views.HorizontalScrollMenuView>
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

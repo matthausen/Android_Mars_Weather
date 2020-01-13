@@ -22,10 +22,21 @@ public class MainActivity extends AppCompatActivity {
     HorizontalScrollMenuView forecast;
 
     TextView avgtemperatureTxt;
-    TextView mintemperatureTxt;
-    TextView maxtemperatureTxt;
+    TextView minMaxTxt;
     TextView solTxt;
     TextView seasonTxt;
+    TextView windTxt;
+
+    String sol_key;
+    String sol_key_1_ago;
+    String sol_key_2_ago;
+    String sol_key_3_ago;
+    String sol_key_4_ago;
+    String sol_key_5_ago;
+    String sol_key_6_ago;
+
+    String season;
+    String wind;
 
 
     Double avgTemp;
@@ -50,10 +61,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         avgtemperatureTxt = findViewById(R.id.average);
-        mintemperatureTxt = findViewById(R.id.minimum);
-        maxtemperatureTxt = findViewById(R.id.maximum);
+        minMaxTxt = findViewById(R.id.minMaxTemp);
         solTxt = findViewById(R.id.sol);
         seasonTxt = findViewById(R.id.season);
+        windTxt = findViewById(R.id.wind);
 
         new weatherTask().execute();
         forecast = findViewById(R.id.forecast);
@@ -77,23 +88,28 @@ public class MainActivity extends AppCompatActivity {
             try {
                 JSONObject jsonObj = new JSONObject(result);
 
-                String sol_key = jsonObj.getJSONArray("sol_keys")
+                sol_key = jsonObj.getJSONArray("sol_keys")
                         .getString(6);
-                String sol_key_1_ago = jsonObj.getJSONArray("sol_keys")
+                sol_key_1_ago = jsonObj.getJSONArray("sol_keys")
                         .getString(5);
-                String sol_key_2_ago = jsonObj.getJSONArray("sol_keys")
+                sol_key_2_ago = jsonObj.getJSONArray("sol_keys")
                         .getString(4);
-                String sol_key_3_ago = jsonObj.getJSONArray("sol_keys")
+                sol_key_3_ago = jsonObj.getJSONArray("sol_keys")
                         .getString(3);
-                String sol_key_4_ago = jsonObj.getJSONArray("sol_keys")
+                sol_key_4_ago = jsonObj.getJSONArray("sol_keys")
                         .getString(2);
-                String sol_key_5_ago = jsonObj.getJSONArray("sol_keys")
+                sol_key_5_ago = jsonObj.getJSONArray("sol_keys")
                         .getString(1);
-                String sol_key_6_ago = jsonObj.getJSONArray("sol_keys")
+                sol_key_6_ago = jsonObj.getJSONArray("sol_keys")
                         .getString(0);
 
-                String season = jsonObj.getJSONObject(sol_key)
+                season = jsonObj.getJSONObject(sol_key)
                         .getString("Season");
+
+                wind = jsonObj.getJSONObject(sol_key)
+                        .getJSONObject("WD")
+                        .getJSONObject("most_common")
+                        .getString("compass_point");
 
                 avgTemp = jsonObj.getJSONObject(sol_key)
                         .getJSONObject("AT")
@@ -146,10 +162,10 @@ public class MainActivity extends AppCompatActivity {
                         .getDouble("mx");
 
                 avgtemperatureTxt.setText(Math.round(avgTemp) + " °C");
-                mintemperatureTxt.setText("Min: " + Math.round(minTemp)+ " °C");
-                maxtemperatureTxt.setText("Max: " + Math.round(maxTemp)+ " °C");
-                solTxt.setText("Sol: " + sol_key);
+                minMaxTxt.setText("Min: " + Math.round(minTemp)+ " °C\n" + "Max: " + Math.round(maxTemp)+ " °C");
+                solTxt.setText("Solar day: " + sol_key);
                 seasonTxt.setText("Season: " + season);
+                windTxt.setText("Wind direction: " + wind);
 
                 initForecast();
 
@@ -160,12 +176,12 @@ public class MainActivity extends AppCompatActivity {
 
         private void initForecast() {
 
-            forecast.addItem("Min: " + Math.round(minTemp_1_ago) + " | Max: " + Math.round(maxTemp_1_ago), R.drawable.ic_sun);
-            forecast.addItem("Min: " + Math.round(minTemp_2_ago) + " | Max: " + Math.round(maxTemp_2_ago), R.drawable.ic_sun);
-            forecast.addItem("Min: " + Math.round(minTemp_3_ago) + " | Max: " + Math.round(maxTemp_3_ago), R.drawable.ic_sun);
-            forecast.addItem("Min: " + Math.round(minTemp_4_ago) + " | Max: " + Math.round(maxTemp_4_ago), R.drawable.ic_sun);
-            forecast.addItem("Min: " + Math.round(minTemp_5_ago) + " | Max: " + Math.round(maxTemp_5_ago), R.drawable.ic_sun);
-            forecast.addItem("Min: " + Math.round(minTemp_6_ago) + " | Max: " + Math.round(maxTemp_6_ago), R.drawable.ic_sun);
+            forecast.addItem("Solar Day: " + sol_key_1_ago + "\n\n Min: " + Math.round(minTemp_1_ago) + "°C\n Max: " + Math.round(maxTemp_1_ago) + "°C", R.drawable.ic_solar_day);
+            forecast.addItem("Solar Day: " + sol_key_2_ago + "\n\n Min: " + Math.round(minTemp_2_ago) + "°C\n Max: " + Math.round(maxTemp_2_ago) + "°C", R.drawable.ic_solar_day);
+            forecast.addItem("Solar Day: " + sol_key_3_ago + "\n\n Min: " + Math.round(minTemp_3_ago) + "°C\n Max: " + Math.round(maxTemp_3_ago) + "°C", R.drawable.ic_solar_day);
+            forecast.addItem("Solar Day: " + sol_key_4_ago + "\n\n Min: " + Math.round(minTemp_4_ago) + "°C\n Max: " + Math.round(maxTemp_4_ago) + "°C", R.drawable.ic_solar_day);
+            forecast.addItem("Solar Day: " + sol_key_5_ago + "\n\n Min: " + Math.round(minTemp_5_ago) + "°C\n Max: " + Math.round(maxTemp_5_ago) + "°C", R.drawable.ic_solar_day);
+            forecast.addItem("Solar Day: " + sol_key_6_ago + "\n\n Min: " + Math.round(minTemp_6_ago) + "°C\n Max: " + Math.round(maxTemp_6_ago) + "°C", R.drawable.ic_solar_day);
 
             forecast.showItems();
 

@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Weather Mars</string>
     <string name="content_description">condition</string>
+    <string name="station">Elysium Planitia</string>
+    <string name="description">Mars</string>
+    <string name="overlay">Overlay</string>
 </resources>
