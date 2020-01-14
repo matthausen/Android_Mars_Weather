@@ -105,11 +105,15 @@ public class MainActivity extends AppCompatActivity {
 
                 season = jsonObj.getJSONObject(sol_key)
                         .getString("Season");
+                try {
+                    wind = jsonObj.getJSONObject(sol_key)
+                            .getJSONObject("WD")
+                            .getJSONObject("most_common")
+                            .getString("compass_point");
+                } catch(JSONException e){
+                    Toast.makeText(MainActivity.this, "No wind data available yet for today", Toast.LENGTH_LONG).show();
+                }
 
-                wind = jsonObj.getJSONObject(sol_key)
-                        .getJSONObject("WD")
-                        .getJSONObject("most_common")
-                        .getString("compass_point");
 
                 avgTemp = jsonObj.getJSONObject(sol_key)
                         .getJSONObject("AT")
@@ -162,10 +166,13 @@ public class MainActivity extends AppCompatActivity {
                         .getDouble("mx");
 
                 avgtemperatureTxt.setText(Math.round(avgTemp) + " °C");
-                minMaxTxt.setText("Min: " + Math.round(minTemp)+ " °C\n" + "Max: " + Math.round(maxTemp)+ " °C");
+                minMaxTxt.setText("Min: " + Math.round(minTemp)+ " °C\nMax: " + Math.round(maxTemp)+ " °C");
                 solTxt.setText("Solar day: " + sol_key);
                 seasonTxt.setText("Season: " + season);
-                windTxt.setText("Wind direction: " + wind);
+
+                if(wind != null) {
+                    windTxt.setText("Wind direction: " + wind);
+                }
 
                 initForecast();
 
