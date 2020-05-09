@@ -20,9 +20,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
             android:text="Sol"
-            android:textSize="20dp"
             android:textStyle="bold"
-            android:layout_marginStart="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -32,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_solar_day"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="22dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/sol"
             app:layout_constraintTop_toTopOf="parent" />
@@ -43,7 +41,7 @@
             android:layout_height="wrap_content"
             android:text="Max"
             android:textStyle="bold"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="22dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/weather_icon"
             app:layout_constraintTop_toTopOf="parent" />
@@ -53,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Min"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="22dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/max"
             app:layout_constraintTop_toTopOf="parent" />
@@ -66,7 +64,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/min"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="40dp" />
+            android:layout_marginStart="22dp" />
 
         <TextView
             android:id="@+id/wind"
@@ -76,7 +74,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/weather_wind"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="40dp"/>
+            android:layout_marginStart="22dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,5 +1,5 @@
-- Improve recyclerView layout
-- Change icon colour to bright yellow
+- Create CardView for current weather
+- Change current background
 - Create a widget
 
 - Response example: 

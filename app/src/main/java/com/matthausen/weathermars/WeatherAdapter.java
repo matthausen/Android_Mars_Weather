@@ -57,9 +57,12 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
     public void onBindViewHolder(@NonNull WeatherAdapter.WeatherViewHolder holder, int position) {
         final WeatherObject currentWeather = mDataset.get(position);
 
+        int minTemp = (int) Math.round(currentWeather.getMinTemp());
+        int maxTemp = (int) Math.round(currentWeather.getMaxTemp());
+
         holder.sol.setText(currentWeather.getSol());
-        holder.minTemp.setText(currentWeather.getMinTemp().toString());
-        holder.maxTemp.setText(currentWeather.getMaxTemp().toString());
+        holder.minTemp.setText(minTemp + " °C");
+        holder.maxTemp.setText(maxTemp + " °C");
         holder.windDirection.setText(currentWeather.getWindDir());
     }
 
