@@ -32,11 +32,11 @@ public class MainActivity extends AppCompatActivity {
     TextView current_max_temp;
     TextView current_season;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
